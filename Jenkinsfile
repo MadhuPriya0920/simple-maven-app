@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'M3'
+    }
+
+    stages {
+
+        stage('Checkout Git') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/MadhuPriya0920/simple-maven-app.git'
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                bat 'mvn clean test'
+            }
+        }
+    }
+}
